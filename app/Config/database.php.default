@@ -64,9 +64,25 @@
  */
 class DATABASE_CONFIG {
 
-	public $default = array('datasource' => 'Database/Mysql' , 'persistent' => false , 'host' => 'ja-cdbr-azure-east-a.cloudapp.net' , 'login' => 'bdd5ef4ee5273d', 'password' => 'bd4e4fd7' , 'database'=> 'caketest',
+//	public $default = array('datasource' => 'Database/Mysql' , 'persistent' => false , 'host' => 'ja-cdbr-azure-east-a.cloudapp.net' , 'login' => 'bdd5ef4ee5273d', 'password' => 'bd4e4fd7' , 'database'=> 'caketest',
+//		'prefix' => '',
+//		//'encoding' => 'utf8',
+//	);
+
+	// SQLデータベースと接続する場合
+	// ポイントは datasourceが 'Database/Sqlserver'となる事と、loginを <ユーザ名>@<サーバ名>とする事
+	// encodingに 'utf8'を指定するとエラーになるので、 明示的に指定するなら PDO::SQLSRV_ENCODING_UTF8を指定する
+	// （デフォルトencodingは PDO::SQLSRV_ENCODING_UTF8なので 省略するもの可）
+	public $default = array(
+		'datasource' => 'Database/Sqlserver' , 
+		'persistent' => false , 
+		'host' => 'insprout-caketest.database.windows.net' , 
+		'login' => 'insprout@insprout-caketest.database.windows.net', 
+		'password' => 'coco#1ban' , 
+		'database'=> 'CakeTest',
 		'prefix' => '',
-		//'encoding' => 'utf8',
+//		'encoding' => 'utf8',
+//		'encoding'  => PDO::SQLSRV_ENCODING_UTF8,
 	);
 
 	public $test = array(
