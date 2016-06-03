@@ -1,10 +1,21 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 /**
  * Administrator Model
  *
  */
 class Administrator extends AppModel {
+
+    public function beforeSave($options = array()) {
+        if (isset($this->data[$this->alias]['password'])) {
+            $passwordHasher = new BlowfishPasswordHasher();
+            $this->data[$this->alias]['password'] = $passwordHasher->hash(
+                $this->data[$this->alias]['password']
+            );
+        }
+        return true;
+    }
 
 /**
  * Validation rules
@@ -32,5 +43,12 @@ class Administrator extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+        'role' => array(
+            'valid' => array(
+                'rule' => array('inList', array('admin', 'author')),
+                'message' => 'Please enter a valid role',
+                'allowEmpty' => false
+            )
+        )
 	);
 }
