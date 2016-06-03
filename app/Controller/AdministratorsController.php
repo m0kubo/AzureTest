@@ -18,13 +18,13 @@ class AdministratorsController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        // ユーザー自身による登録とログアウトを許可する
+        // 繝ｦ繝ｼ繧ｶ繝ｼ閾ｪ霄ｫ縺ｫ繧医ｋ逋ｻ骭ｲ縺ｨ繝ｭ繧ｰ繧｢繧ｦ繝医ｒ險ｱ蜿ｯ縺吶ｋ
         $this->Auth->allow('add', 'logout');
     }
 
     public function login() {
         if ($this->request->is('post')) {
-var_dump($this->Auth->login());
+//var_dump($this->Auth->login());
 var_dump($this->Auth->redirect());
             if ($this->Auth->login()) {
                 $this->redirect($this->Auth->redirect());
