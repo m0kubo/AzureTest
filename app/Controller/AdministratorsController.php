@@ -24,12 +24,12 @@ class AdministratorsController extends AppController {
 
     public function login() {
         if ($this->request->is('post')) {
-//var_dump($this->Auth->login());
-var_dump($this->Auth->redirect());
             if ($this->Auth->login()) {
+				var_dump(__('Logged in'));
+                var_dump($this->Auth->redirect());
                 $this->redirect($this->Auth->redirect());
             } else {
-//                $this->Session->setFlash(__('Invalid username or password, try again'));
+                $this->Session->setFlash(__('Invalid username or password, try again'));
             }
         }
     }

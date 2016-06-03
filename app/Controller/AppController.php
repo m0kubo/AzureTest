@@ -33,19 +33,25 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
     public $components = array(
-        //'Flash',
+        'Session',
         'Auth' => array(
+            'loginAction' => array(
+                'controller' => 'administrators',
+                'action' => 'login',
+                'admin' => true
+            ),
             'loginRedirect' => array(
-                'controller' => 'posts',
+                'controller' => 'administrators',
                 'action' => 'index'
             ),
             'logoutRedirect' => array(
-                'controller' => 'pages',
-                'action' => 'display',
+                'controller' => 'administrators',
+                'action' => 'login',
                 'home'
             ),
             'authenticate' => array(
                 'Form' => array(
+                    'userModel' => 'Administrator',
                     'passwordHasher' => 'Blowfish'
                 )
             )
@@ -53,7 +59,7 @@ class AppController extends Controller {
     );
     
     public function beforeFilter() {
-        $this->Auth->allow('index', 'view');
+        //$this->Auth->allow('index', 'view');
     }
     
 }
