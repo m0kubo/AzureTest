@@ -16,27 +16,39 @@ class AdministratorsController extends AppController {
 	public $components = array('Paginator');
 
 
-    public function beforeFilter() {
-        parent::beforeFilter();
-        // ユーザー自身による登録とログアウトを許可する
-        $this->Auth->allow('add', 'logout');
-    }
+	public function	beforeFilter() {
+		parent::beforeFilter();
+		// ユーザー自身による登録とログアウトを許可する
+		$this->Auth->allow('add', 'logout');
+	}
 
-    public function login() {
-        if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-				var_dump(__('Logged in'));
-                var_dump($this->Auth->redirect());
-                $this->redirect($this->Auth->redirect());
-            } else {
-                $this->Session->setFlash(__('Invalid username or password, try again'));
-            }
-        }
-    }
 
-    public function logout() {
-        $this->redirect($this->Auth->logout());
-    }
+/**
+ * index method
+ *
+ * @return void
+ */
+	public function	login()	{
+		if ($this->request->is('post'))	{
+			if ($this->Auth->login()) {
+				var_dump(__('Logged	in'));
+				var_dump($this->Auth->redirect());
+				$this->redirect($this->Auth->redirect());
+			} else {
+				$this->Session->setFlash(__('Invalid username or password, try again'));
+			}
+		}
+	}
+
+
+/**
+ * index method
+ *
+ * @return void
+ */
+	public function	logout() {
+		$this->redirect($this->Auth->logout());
+	}
 
 /**
  * index method

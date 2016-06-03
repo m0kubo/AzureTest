@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Application level Controller
  *
@@ -35,20 +35,25 @@ class AppController extends Controller {
     public $components = array(
         'Session',
         'Auth' => array(
+            // ログインを行う コントローラとアクションを指定
             'loginAction' => array(
                 'controller' => 'administrators',
                 'action' => 'login',
                 'admin' => true
             ),
+            // 初回ログイン後の 表示ページを指定
             'loginRedirect' => array(
                 'controller' => 'administrators',
                 'action' => 'index'
             ),
+            // ログアウト後の 表示ページを指定
             'logoutRedirect' => array(
                 'controller' => 'administrators',
                 'action' => 'login',
                 'home'
             ),
+            // 認証関連の設定
+            // デフォルトの 認証用モデルは Userモデルなので Administratorモデルに変更する
             'authenticate' => array(
                 'Form' => array(
                     'userModel' => 'Administrator',
