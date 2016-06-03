@@ -24,7 +24,7 @@ class AdministratorsController extends AppController {
 
 
 /**
- * index method
+ * login method
  *
  * @return void
  */
@@ -42,7 +42,7 @@ class AdministratorsController extends AppController {
 
 
 /**
- * index method
+ * logout method
  *
  * @return void
  */
