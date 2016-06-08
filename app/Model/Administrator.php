@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 App::uses('AppModel', 'Model');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 /**
@@ -22,27 +22,33 @@ class Administrator extends AppModel {
  *
  * @var array
  */
-	public $validate = array(
-		'username' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'password' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+    public $validate = array(
+        'username' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty'),
+                'required' => true,
+                'message' => 'ユーザー名は必須項目です'
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+            'isUnique' => array(
+                'rule' => 'isUnique',
+                'message' => 'このユーザー名は既に登録されています'
+            ),
+        ),
+        'password' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty'),
+                //'message' => 'Your custom message here',
+                //'allowEmpty' => false,
+                //'required' => false,
+                //'last' => false, // Stop validation after this rule
+                //'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+        ),
         'role' => array(
             'valid' => array(
                 'rule' => array('inList', array('admin', 'author')),
@@ -50,5 +56,5 @@ class Administrator extends AppModel {
                 'allowEmpty' => false
             )
         )
-	);
+    );
 }
