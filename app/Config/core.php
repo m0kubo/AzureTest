@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * This is core configuration file.
  *
@@ -18,6 +18,19 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+define('ENVIRONMENT', env('CAKE_ENV'));
+
+switch (ENVIRONMENT) {
+case 'production':
+    define('DEBUG_MODE', 0);
+    define('USE_DB_CONFIG', 'production');
+    break;
+default:
+    define('DEBUG_MODE', 2);
+    define('USE_DB_CONFIG', 'develop');
+    break;
+}
+
 /**
  * CakePHP Debug Level:
  *
@@ -31,7 +44,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 2);
+	Configure::write('debug', DEBUG_MODE);
 	
 require_once dirname(__DIR__) . '\Vendor\vendor\autoload.php';
 
